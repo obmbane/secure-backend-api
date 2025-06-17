@@ -50,10 +50,16 @@ def verify_jwt(token):
 
 @app.route("/api/inventory", methods=["GET"])
 def get_inventory():
+    username = (
+    payload.get("preferred_username")
+    or payload.get("unique_name")
+    or payload.get("email")
+    or payload.get("name")
+    or "unknown")
     try:
         token = get_token_auth_header()
         payload = verify_jwt(token)
-        return jsonify({"message": "Access granted", "user": payload["preferred_username"]})
+        return jsonify({"message": "Access granted", "user": username})
     except Exception as e:
         return jsonify({"error": str(e)}), 401
 
