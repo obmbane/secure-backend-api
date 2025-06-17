@@ -10,7 +10,7 @@ TENANT_ID = "738134d3-44fa-4fe0-9efa-e4310ffb2bea"
 CLIENT_ID = "d44509c3-58b3-4885-a9f2-df1508a8cd4f"
 API_AUDIENCE = f"api://{CLIENT_ID}"
 JWKS_URL = f"https://login.microsoftonline.com/{TENANT_ID}/discovery/v2.0/keys"
-ISSUER = f"https://login.microsoftonline.com/{TENANT_ID}/v2.0"
+ISSUER = f"https://sts.windows.net/{TENANT_ID}/"
 
 # Cache JWKS
 jwks = requests.get(JWKS_URL).json()["keys"]
